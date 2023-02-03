@@ -5,7 +5,7 @@ globalStyle("body", {
   margin: 0,
 
   fontFamily: vars.fonts.body,
-  color: vars.colors.text.normal,
+  color:'white',
   background: vars.colors.background,
 
   fontSynthesis: "none",
@@ -33,11 +33,11 @@ globalStyle("input[type=text], textarea", {
   lineHeight: 1.5,
   fontSize: "1rem",
   appearance: "none",
-  borderRadius: "0.25rem",
+  borderRadius: "0.50rem",
   boxSizing: "border-box",
-  backgroundColor: "white",
+  backgroundColor: "black",
   fontFamily: vars.fonts.body,
-  border: "1px solid #CED4DA",
+  border: "4px solid #CED4DA",
   backgroundClip: "padding-box",
   transition: "border-color .15s ease-in-out"
     + ", box-shadow .15s ease-in-out",

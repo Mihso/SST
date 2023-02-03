@@ -1,0 +1,50 @@
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
+import { useTypedQuery } from "@first-project/graphql/urql";
+import Empty from "../components/Empty";
+import Navbar from "../components/Navbar";
+import Loading from "../components/Loading";
+import * as styles from "./Home.css";
+
+export default function newPage() {
+  // Handle empty document cache
+  // https://formidable.com/open-source/urql/docs/basics/document-caching/#adding-typenames
+  const context = useMemo(() => ({ additionalTypenames: ["Article"] }), []);
+  const [articles] = useTypedQuery({
+    query: {
+      articles: {
+        id: true,
+        url: true,
+        title: true,
+      },
+    },
+    context,
+  });
+
+  return (
+    <div>
+      <Navbar />
+      <div>
+        <p className={styles.text}>Hello World</p>
+      </div>
+      {articles.fetching ? (
+        <Loading />
+      ) : articles.data?.articles && articles.data?.articles.length > 0 ? (
+        <ol className={styles.list}>
+          {articles.data?.articles.map((article) => (
+            <li key={article.id} className={styles.article}>
+              <div>
+                <h2 className={styles.title}>
+                  <Link to={`/article/${article.id}`}>{article.title}</Link>
+                </h2>
+                &nbsp;
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <Empty>&#10024; Post the first link &#10024;</Empty>
+      )}
+    </div>
+  );
+}

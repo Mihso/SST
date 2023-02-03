@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Article from "./pages/Article";
 import "./index.css";
+import NewPage from "./pages/newPage";
 
 const urql = createClient({
   url: import.meta.env.VITE_GRAPHQL_URL,
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="article/:id" element={<Article />} />
+        <Route path="pager/" element={<NewPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

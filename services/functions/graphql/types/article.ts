@@ -10,7 +10,7 @@ const ArticleType = builder
       //title: t.exposeString("title"),
       title:t.field({
         type:"String",
-        resolve:(article) => `Hello ${article.title}`,
+        resolve:(article) => `Hello help ${article.title}`,
       }),
     }),
   });
